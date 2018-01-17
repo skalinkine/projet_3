@@ -1,8 +1,8 @@
 <?php $title = htmlspecialchars($post['title']); ?>
 
 <?php ob_start(); ?>
-<h1>Mon super blog !</h1>
-<h2><a href="index.php">Retour à la liste des billets</a></h2>
+<h1>Billet simple pour l'Alaska</h1>
+<h2><a href="index.php">Retour à la liste des chapitres</a></h2>
 
 <div class="news">
     <h3>

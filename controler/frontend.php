@@ -7,19 +7,20 @@ function listPosts()
 {
     $postManager = new PostManager(); 
     $posts = $postManager->getPosts(); 
-
     require('view/frontend/listPostsView.php');
+    
 }
 
 function post()
 {
     $postManager = new PostManager();
     $commentManager = new CommentManager();
-
-    $post = $postManager->getPost($_GET['id']);
-    $comments = $commentManager->getComments($_GET['id']);
-
-    require('view/frontend/postView.php');
+    $id = (int)$_GET['id'];
+    if (isset($id) and $id > 0) {
+        $post = $postManager->getPost($id);
+        $comments = $commentManager->getComments($id);
+    }
+     require('view/frontend/postView.php');
 }
 
 function addComment($postId, $author, $comment)

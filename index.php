@@ -1,8 +1,9 @@
 <?php
-
+session_start();
 //cette page est celle qui est appelée par l'utilisateur, elle va chercher dans la page frontend.php les informations nécessaires et vérifie si tout est ok ou envoie des messages d'alerte en cas de problème
 
 require('controler/frontend.php');
+require('controler/backend.php');
 
 try {
     // on vérifie la présence du paramètre action dans l'url
@@ -52,12 +53,28 @@ try {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
+        elseif ($_GET['action'] == 'adminConnect') {
+            if (isset($_POST['login']) && ($_POST['mot_de_passe'])) {
+               getUser($_POST['login'], $_POST['mot_de_passe']) ; 
+            } else {
+                connectUser();
+            }
+        }
+        elseif ($_GET['action'] == 'dashboard') {
+                if (isset($_SESSION['userId'])) {
+                    echo 'salut tu as trouvé l\'administration cachée';
+                }
+        }
+        elseif ($_GET['action'] == 'generatepassword'){
+            setPassword();
+        }
         else {
             throw new Exception('Aucun identifiant de billet envoyé');
         }
-    }
+    } 
     else {
         listPosts();
+        
     }
 }
 catch(Exception $e) {

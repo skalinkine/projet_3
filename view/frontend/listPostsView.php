@@ -1,6 +1,7 @@
 <?php $title = 'Mon blog'; ?>
 
 <?php ob_start(); ?>
+<em><a href="index.php?action=adminConnect">Administration</a></em>
 <h1>Billet simple pour l'Alaska</h1>
 <h2>Derniers chapitres du livre :</h2>
 

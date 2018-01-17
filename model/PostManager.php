@@ -17,4 +17,14 @@ class PostManager extends Manager
         $post = $req->fetch();
         return $post;
     }
+    
+    public function addPost()
+    {
+        //faire notre requete SQL pour ajouter le post
+        $db = $this->dbConnect();
+        $req = $db->prepare('INSERT INTO posts(title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\')) VALUES (?,?,?)');
+        $req->execute(array($_POST['title'],$_POST['content'], $_POST['date_format']));
+        
+    }
+    
 }
