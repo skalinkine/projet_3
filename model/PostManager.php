@@ -22,8 +22,8 @@ class PostManager extends Manager
     {
         //faire notre requete SQL pour ajouter le post
         $db = $this->dbConnect();
-        $req = $db->prepare('INSERT INTO posts(title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\')) VALUES (?,?,?)');
-        $req->execute(array($_POST['title'],$_POST['content'], $_POST['date_format']));
+        $req = $db->prepare('INSERT INTO posts(title, content, creation_date) VALUES (?,?,NOW())');
+        $req->execute(array($_POST['title'],$_POST['content']));
         
     }
     

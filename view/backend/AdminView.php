@@ -1,26 +1,23 @@
 <p>Hello tu es connecté</p>
-<!-- 
-    Créer ici ce qui deviendra l'interface d'administration du blog
--->
+
 <?php $title = 'Administration'; ?>
 
 <?php ob_start(); ?>
-<em><a href="index.php">Blog</a></em>
+<p><em><a href="index.php">Blog</a></em></p>
 
-<!-- 
-    bouton ecrire un nouveau chapitre qui va à une page avec le formulaire pour ajouter chapitre
-    bouton pour modifier
-    bouton pour supprimer
+<h1>Billet simple pour l'Alaska</h1>
 
+<form name="x" action="newPostView.php" method="post">
+<input type="submit" value="Ecrire un nouveau chapitre">
+</form>
 
-    liste des commentaires signalés avec un bouton pour les supprimer
-    
--->
+<form name="x" action="updatePostView.php" method="post">
+<input type="submit" value="Modifier le chapitre">
+</form>
 
-
-
-
-
+<form name="x" action="deletePostView.php" method="post">
+<input type="submit" value="Supprimer le chapitre">
+</form>
 
 <?php $content = ob_get_clean(); ?>
 

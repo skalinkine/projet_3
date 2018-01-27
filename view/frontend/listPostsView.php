@@ -1,4 +1,4 @@
-<?php $title = 'Mon blog'; ?>
+<?php $title = 'Jean Forteroche'; ?>
 
 <?php ob_start(); ?>
 <em><a href="index.php?action=adminConnect">Administration</a></em>

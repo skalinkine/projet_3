@@ -15,7 +15,7 @@ function getUser($user, $password)
 	if ($userbdd ['username'] !='') {
                if (password_verify($password, $userbdd['password'])){
                    $_SESSION ['userId'] = $userbdd['id'];
-                   header ('Location: index.php?action=dashboard');
+                   require('view/backend/AdminView.php');
                }
                else {
                    $erreurMdp = 'Le mot de passe est incorrect';
