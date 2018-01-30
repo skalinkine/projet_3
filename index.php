@@ -40,6 +40,7 @@ try {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
+     
         elseif ($_GET['action'] == 'addComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 if (!empty($_POST['author']) && !empty($_POST['comment'])) {
@@ -52,19 +53,42 @@ try {
             else {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
-        }
+        }   
+        // Si l'utilisateur clique sur "Signaler"
+        elseif ($_GET['action'] == 'signalComment') {
+                signalComment($_GET['commentId']);
+                listPosts();
+        } 
+        //si l'utilisateur clique sur "administration"
         elseif ($_GET['action'] == 'adminConnect') {
-            if (isset($_POST['login']) && ($_POST['mot_de_passe'])) {
-               getUser($_POST['login'], $_POST['mot_de_passe']) ; 
+            if (isset($_POST['username']) && ($_POST['password'])) {
+               getUser($_POST['username'], $_POST['password']) ;
             } else {
                 connectUser();
             }
         }
+        // si l'administrateur est le bon
         elseif ($_GET['action'] == 'dashboard') {
                 if (isset($_SESSION['userId'])) {
-                    echo 'salut tu as trouvé l\'administration cachée';
-                }
+                    require('view/backend/AdminView.php');
+                }       
         }
+        elseif ($_GET['action'] == 'newpost') {
+                if (isset($_SESSION['userId'])) {
+                    require('view/backend/newPostView.php');
+                }       
+        }
+        elseif ($_GET['action'] == 'updatepost') {
+                if (isset($_SESSION['userId'])) {
+                    require('view/backend/updatePostView.php');
+                }       
+        }
+        elseif ($_GET['action'] == 'deletepost') {
+                if (isset($_SESSION['userId'])) {
+                    require('view/backend/deletePostView.php');
+                }       
+        }
+        
         elseif ($_GET['action'] == 'generatepassword'){
             setPassword();
         }
