@@ -1,24 +1,19 @@
 <p>Hello tu es connecté</p>
-
+<!-- 
+    Créer ici ce qui deviendra l'interface d'administration du blog
+-->
 <?php $title = 'Administration'; ?>
 
 <?php ob_start(); ?>
-<p><em><a href="index.php">Blog</a></em></p>
+<em><a href="index.php">Blog</a></em>
 
-<h1>Billet simple pour l'Alaska</h1>
 
-<form name="x" action="newPostView.php" method="post">
-<input type="submit" value="Ecrire un nouveau chapitre">
+<form action="index.php?action=dashboard" method="post">
+      <p><input type="submit" value="Ecrire un nouveau chapitre"></p>
+      <p><input type="submit" value="Modifier un chapitre"></p>
+      <p><input type="submit" value="Supprimer un chapitre"></p>
 </form>
-
-<form name="x" action="updatePostView.php" method="post">
-<input type="submit" value="Modifier le chapitre">
-</form>
-
-<form name="x" action="deletePostView.php" method="post">
-<input type="submit" value="Supprimer le chapitre">
-</form>
-
+    
 <?php $content = ob_get_clean(); ?>
 
 <?php require('templateAdmin.php'); ?>
