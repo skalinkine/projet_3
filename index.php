@@ -70,22 +70,23 @@ try {
         // si l'administrateur est le bon
         elseif ($_GET['action'] == 'dashboard') {
                 if (isset($_SESSION['userId'])) {
-                    require('view/backend/AdminView.php');
+                    dashboardAdmin();
                 }       
         }
         elseif ($_GET['action'] == 'newpost') {
                 if (isset($_SESSION['userId'])) {
-                    require('view/backend/newPostView.php');
+                    newPost();
                 }       
         }
+        
         elseif ($_GET['action'] == 'updatepost') {
                 if (isset($_SESSION['userId'])) {
-                    require('view/backend/updatePostView.php');
-                }       
+                    modifyPost($_GET['id'], $_POST['title'], $_POST['content']);
+            }
         }
         elseif ($_GET['action'] == 'deletepost') {
                 if (isset($_SESSION['userId'])) {
-                    require('view/backend/deletePostView.php');
+                  adminPost();  
                 }       
         }
         
@@ -100,7 +101,9 @@ try {
         listPosts();
         
     }
+
 }
+
 catch(Exception $e) {
     echo 'Erreur : ' . $e->getMessage();
 }
