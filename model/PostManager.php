@@ -18,13 +18,30 @@ class PostManager extends Manager
         return $post;
     }
     
-    public function addPost()
+    public function addPost($title, $content)
     {
         //faire notre requete SQL pour ajouter le post
         $db = $this->dbConnect();
-        $req = $db->prepare('INSERT INTO posts(title, content, creation_date) VALUES (?,?,NOW())');
-        $req->execute(array($_POST['title'],$_POST['content']));
-        
+        $posts = $db->prepare('INSERT INTO posts (title, content, creation_date) VALUES (?,?,NOW())');
+        $affectedLines = $posts->execute(array($title, $content));
+        return $affectedLines;
     }
     
+    // Fonction qui permet de modifier le contenu d'un article
+    public function updatePost($id, $title, $content)
+    {
+        $db = $this->dbConnect();
+        $posts = $db->prepare('UPDATE posts SET title = ?, content = ? WHERE id = ?');
+        $affectedLines = $posts->execute(array($title, $content, $id));
+        return $affectedLines;
+    }
+    
+    public function deletePost($id)
+    {
+        $db = $this->dbConnect();
+        $post = $db->prepare('DELETE FROM posts WHERE id = ?');
+        $affectedLines = $post->execute(array($_GET['id']));
+        return $affectedLines;
+    }
+
 }
