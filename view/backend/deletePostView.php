@@ -1,12 +1,14 @@
-<em><a href="AdminView.php">Administration</a></em>
+<em><a href="index.php?action=dashboard">Administration</a></em>
 
-<p>Supprimer un chapitre</p>
 
-<?php
+<?php $title = 'Chapitre supprimé'; ?>
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+<?php ob_start(); ?>
+<h1>Billet simple pour l'Alaska</h1>
 
+    
+    <p>le chapitre est supprimé</p>
+    
+<?php $content = ob_get_clean(); ?>
+
+<?php require('templateAdmin.php'); ?>

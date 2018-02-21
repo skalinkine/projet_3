@@ -1,12 +1,29 @@
-<em><a href="AdminView.php">Administration</a></em>
+<em><a href="index.php?action=dashboard">Administration</a></em>
 
-<p>Modifier un chapitre</p>
+<?php $title = htmlspecialchars($post['title']); ?>
 
-<?php
+<?php ob_start(); ?>
+<h1>Billet simple pour l'Alaska</h1>
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
+
+    <h2>Modifier le chapitre</h2>
+
+
+         <form action="index.php?action=updatepost&amp;id=<?= $post['id'] ?>" method="post">
+            <div>
+                <label for="title">Titre</label><br />
+                <input type="text" id="title" name="title" value="<?= $post['title'] ?>" />
+             </div>
+            <div>
+                <label for="content">Contenu</label><br />
+                <textarea id="content" name="content"><?= $post['content'] ?></textarea>
+            </div>
+            <div>
+                <input type="submit" />
+            </div>
+        </form> 
+   
+<?php $content = ob_get_clean(); ?>
+
+<?php require('templateAdmin.php'); ?>

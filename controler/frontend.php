@@ -1,5 +1,4 @@
 <?php
-
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 
@@ -26,9 +25,7 @@ function post()
 function addComment($postId, $author, $comment)
 {
     $commentManager = new CommentManager();
-
     $affectedLines = $commentManager->postComment($postId, $author, $comment);
-
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
     }
@@ -41,21 +38,26 @@ function modifyComment($postId, $commentId, $author=null, $comment=null)
 {
     $postManager = new PostManager();
     $commentManager = new CommentManager();
-
     if ($author != null && $comment != null) {
         $affectedLines = $commentManager->updateComment($commentId, $author, $comment);
-
         if ($affectedLines === false) {
         throw new Exception('Impossible de modifier le commentaire !');
-    }
-    else {
+        }
+        else {
         header('Location: index.php?action=post&id=' . $postId);
-    }
+        }
     }
     
-
     $post = $postManager->getPost($postId);
     $comments = $commentManager->getComments($postId);
     
     require('view/frontend/postView.php');
 }
+  // fonction pour signaler un commentaire
+function signalComment($commentId)
+{
+    $postManager = new PostManager();
+    $commentManager = new CommentManager();
+        $affectedLines = $commentManager->updateSignalComment($commentId);
+}
+

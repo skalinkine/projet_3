@@ -18,10 +18,8 @@
 <h2>Commentaires</h2>
 
 <?php
-
 if (isset($commentId))
 {
-
    foreach ($comments as $comment)
     {
         if ($comment['id'] == $commentId)
@@ -61,7 +59,6 @@ if (isset($commentId))
 </form>
 <?php
 }
-
 foreach ($comments as $comment)
 {
 ?>
