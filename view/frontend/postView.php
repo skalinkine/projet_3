@@ -1,8 +1,7 @@
 <?php $title = htmlspecialchars($post['title']); ?>
 
 <?php ob_start(); ?>
-<h1>Billet simple pour l'Alaska</h1>
-<h2><a href="index.php">Retour à la liste des chapitres</a></h2>
+
 
 <div class="news">
     <h3>

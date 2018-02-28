@@ -1,28 +1,35 @@
 <?php $title = 'Administration'; ?>
 
-<?php ob_start(); ?>
-<h1>Billet simple pour l'Alaska</h1>
+<?php ob_start(); ?>    
 
-<h1 class="h3 mb-3 font-weight-normal">Veuillez entrer votre login et votre mot de passe pour accéder à l'administration du blog</h1>
-        
+    <form action="index.php?action=adminConnect" method="post" class="form-signin">
+      <div class="text-center mb-4">
+        <img class="mb-4" src="public/images/image_plume.jpg" alt="" width="400" height="300">
+        <h1 class="h3 mb-3 font-weight-normal">Connexion à l'administration</h1>
+        <p>Veuillez entrer votre login et votre mot de passe pour accéder à l'administration du blog</p>
+      </div>
 
-        <form class="col-lg-6" action="index.php?action=adminConnect" method="post">
-            <div class="form-group">
-                <label for="text">Login : </label>
-                <input type="text" class="form-control" name="username"/>
-            </div>
-            <div class="form-group">
-                <label for="text">Mot de passe : </label>
-                <input type="password " class="form-control" name="password"/>
-            </div>
-            <input type="submit" class="btn btn-primary btn-block" value="Valider" />
-        </form>
+      <div class="form-label-group">
+        <input type="text" id="username" name="username" class="form-control" placeholder="Login administrateur">
+        <label for="username">Login administrateur</label>
+      </div>
 
-<?php $content = ob_get_clean(); ?>
+      <div class="form-label-group">
+        <input type="password" name="password" id="password" class="form-control" placeholder="Mot de passe">
+        <label for="password">Mot de passe</label>
+      </div>
 
-<?php require('templateAdmin.php'); ?>
+      <input class="btn btn-lg btn-primary btn-block" type="submit" value="Valider"/>
+      
+    </form>
+  
+
 <?php
 if (isset($erreurMdp)AND($erreurMdp != '')){
     echo $erreurMdp;
 }
 ?>
+
+<?php $content = ob_get_clean(); ?>
+
+<?php require('templateAdmin.php'); ?>

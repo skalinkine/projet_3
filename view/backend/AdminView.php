@@ -1,11 +1,21 @@
-<?php ob_start(); ?>
 <?php $title = 'dashboard'; ?>
-<p>Bienvenu sur l'administration</p>
-<em><a href="index.php">Retour au blog</a></em>
-<h1>Billet simple pour l'Alaska</h1>
+<?php ob_start(); ?>
+
+
+<header>
+            <div class="navbar navbar-dark bg-dark box-shadow">
+                <div class="container d-flex justify-content-between">
+                <p class="accroche">Bienvenu sur l'administration du billet simple pour l'Alaska</p>
+                </div>
+            </div>
+        </header>
+            <p>
+            <a href="index.php?action=dashboard" class="btn btn-primary my-2">Retour à l'administration</a>
+            <a href="index.php?action=disconnect" class="btn btn-secondary my-2">Se déconnecter</a>
+          </p>
 
 <form action="index.php?action=newpost" method="post">
-  <p><input type="submit" value="Ecrire un nouveau chapitre"></p>
+  <p><input class="btn btn-primary" type="submit" value="Ecrire un nouveau chapitre"></p>
 </form>
 
 
@@ -25,17 +35,18 @@ foreach ($posts as $data)
         <p>
             <?= nl2br(htmlspecialchars($data['content'])) ?>
             <br />
-            <form action="index.php?action=updatepost&amp;id=<?= $data['id'] ?>" method="post">
-                <p><input type="submit" value="Modifier ce chapitre"></p>
+            <form action="index.php?action=updatepost&amp;id=<?= $data['id'] ?>" method="post" >
+                <p><input class="btn btn-primary" type="submit" value="Modifier ce chapitre"></p>
             </form>
-            <form action="index.php?action=deletepost&amp;id=<?= $data['id'] ?>" method="post">
-                <p><input type="submit" value="Supprimer ce chapitre"></p>
+            <form action="index.php?action=deletepost&amp;id=<?= $data['id'] ?>" method="post" >
+                <p><input class="btn btn-primary" type="submit" value="Supprimer ce chapitre"></p>
             </form>
         </p>
     </div>
 <?php
 }
 ?>
+
 <?php $content = ob_get_clean(); ?>
 
 <?php require('templateAdmin.php'); ?>
