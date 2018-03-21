@@ -7,12 +7,12 @@
         <link href="public/css/bootstrap.css" rel="stylesheet">
         <link href="public/css/style.css" rel="stylesheet">
         <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-  <script>tinymce.init({ selector:'textarea' });</script>
+        <script>tinymce.init({ selector:'textarea' });</script>
     </head>
         
-    <body>
-        <div class="container">    
-        <?= $content ?>
+    <body class='<?php if (isset($bodyClass)){ echo $bodyClass; } ?>'>
+        <div class="container">
+            <?= $content ?>
         </div>
       
     </body>

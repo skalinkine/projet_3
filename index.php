@@ -81,7 +81,12 @@ try {
         elseif ($action == 'newpost') {
                 if (isset($_SESSION['userId'])){
                     if (isset($_POST['title'])){
-                       newPost($_POST['title'], $_POST['content']);
+                       if (isset ($_FILES ['image']) and ($_FILES['image']['error'] == 0)) {
+                         newPost ($_POST['title'], $_POST['content'], $_FILES['image']);
+                       }
+                       else {
+                         newPost($_POST['title'], $_POST['content']);
+                       }
                     }
                     else {
                     createPost();

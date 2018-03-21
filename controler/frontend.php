@@ -5,7 +5,9 @@ require_once('model/CommentManager.php');
 function listPosts()
 {
     $postManager = new PostManager(); 
-    $posts = $postManager->getPosts(); 
+    $posts = $postManager->getPosts();
+    $posts = createExtract($posts);
+
     require('view/frontend/listPostsView.php');
     
 }
@@ -58,6 +60,24 @@ function signalComment($commentId)
 {
     $postManager = new PostManager();
     $commentManager = new CommentManager();
-        $affectedLines = $commentManager->updateSignalComment($commentId);
+    $affectedLines = $commentManager->updateSignalComment($commentId);
+}
+
+
+
+function createExtract($posts) {
+    $newPosts = array();
+    foreach($posts as $post){
+        $words = $post['ExtractString'];
+        $wordsTable = explode(' ', $words);
+        $length = count($wordsTable);
+        $newWords = '';
+        for ($i = 0; $i < $length - 1; $i++) {
+            $newWords = $newWords .' ' . $wordsTable[$i];
+        }
+        $post['ExtractString'] = $newWords;
+        array_push($newPosts, $post);
+    }
+    return $newPosts;
 }
 

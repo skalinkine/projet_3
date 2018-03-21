@@ -1,6 +1,7 @@
 <?php
 require_once('model/PostManager.php');
 require_once('model/UserManager.php');
+require_once('model/CommentManager.php');
 
 function connectUser()
 {
@@ -26,13 +27,16 @@ function getUser($user, $password)
 
 function dashboardAdmin()
 {
-    $postManager = new PostManager(); 
-    $posts = $postManager->getPosts(); 
-    require('view/backend/AdminView.php');
+    $postManager = new PostManager();
+    $commentManager = new CommentManager();
+    $posts = $postManager->getPostsAdmin(); 
     
+    
+    require('view/backend/AdminView.php');
+  
 }
 
-function modifyPost($postId, $title=null, $content=null)
+function modifyPost($postId, $title = null, $content = null)
 {
     $postManager = new PostManager();
     if ($title != null && $content != null) {
@@ -54,10 +58,25 @@ function createPost()
    require('view/backend/newPostView.php');
 }
 
-function newPost($title, $content)
+function newPost($title, $content, $image = null)
 {
+    if ($image != null){
+        //Créer un identifiant difficile à deviner
+        $nom = md5(uniqid(rand(), true));
+        //récupération de l'extension 
+        $extension_upload = strtolower(  substr(  strrchr($_FILES['image']['name'], '.')  ,1)  );
+        // construction du chemin de l'image uploadée
+        $path = 'public/images/'. $nom . '.' . $extension_upload;
+        $resultat = move_uploaded_file($_FILES['image']['tmp_name'],$path);
+        // 
+        $imageNewName = $nom . '.' . $extension_upload; 
+        } else {
+            $imageNewName = 'image_plume.jpg';
+            $path = 'public/images/image_plume.jpg';
+    }
+    
     $postManager = new PostManager();
-    $posts = $postManager->addPost($title, $content); 
+    $posts = $postManager->addPost($title, $content,$path); 
     require('view/backend/newPostView.php');
 }
 
@@ -68,3 +87,5 @@ function deletePost($id)
     require('view/backend/deletePostView.php');
     
 }
+
+

@@ -37,4 +37,13 @@ class CommentManager extends Manager
         
         return $affectedLines;
     }
+    
+    public function getSignaledComments($commentId)
+    {
+        $db = $this->dbConnect();
+        $signaledComments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr, is_signaled FROM comments WHERE is_signaled = true ORDER BY comment_date DESC');
+        $signaledComments->execute(array($commentId));
+        return $signaledComments->fetchAll();
+    }
+    
 }
