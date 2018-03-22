@@ -29,8 +29,10 @@
                 <label for="content" class="text-info">Contenu</label><br />
                 <textarea id="content" name="content"><?= $post['content'] ?></textarea>
             </div>
+             
+            
             <div>
-                <input class="btn btn-info" type="submit" />
+                <input class="mt-3 btn btn-info" type="submit" />
             </div>
         </form> 
     

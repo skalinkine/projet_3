@@ -13,6 +13,14 @@ class CommentManager extends Manager
         return $comments->fetchAll();
     }
     
+    public function getCommentsAdmin()
+    {
+        $db = $this->dbConnect();
+        $comments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr, is_signaled FROM comments WHERE post_id ORDER BY is_signaled DESC');
+        $comments->execute(array());
+        return $comments->fetchAll();
+    }
+    
     public function postComment($postId, $author, $comment)
     {
         $db = $this->dbConnect();
@@ -34,16 +42,8 @@ class CommentManager extends Manager
         $signal = true;
         $comments = $db->prepare('UPDATE comments SET is_signaled = ? WHERE id = ?');
         $affectedLines = $comments->execute(array($signal, $commentId));
-        
         return $affectedLines;
     }
     
-    public function getSignaledComments($commentId)
-    {
-        $db = $this->dbConnect();
-        $signaledComments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr, is_signaled FROM comments WHERE is_signaled = true ORDER BY comment_date DESC');
-        $signaledComments->execute(array($commentId));
-        return $signaledComments->fetchAll();
-    }
     
 }

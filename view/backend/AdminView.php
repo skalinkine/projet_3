@@ -32,9 +32,23 @@ foreach ($posts as $data)
 
       <p><?= nl2br($data['content']) ?></p>
     </div>
+
+
+    <?php
+    foreach ($comments as $comment){
+        if ($comment['post_id'] == $data['id']) {
+    ?>
+
+        <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
+        <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
+
+    <?php
+        }
+    }
+    ?>
     
     <form action="index.php?action=updatepost&amp;id=<?= $data['id'] ?>" method="post" >
-                    <p><input class="btn btn-info" type="submit" value="Modifier ce chapitre"></p>
+        <p><input class="btn btn-info" type="submit" value="Modifier ce chapitre"></p>
     </form>
     <form action="index.php?action=deletepost&amp;id=<?= $data['id'] ?>" method="post" >
         <p><input class="btn btn-info" type="submit" value="Supprimer ce chapitre"></p>
@@ -42,6 +56,7 @@ foreach ($posts as $data)
 <hr class="my-4">
 <?php
 }
+
 ?>
 
 <?php $content = ob_get_clean(); ?>

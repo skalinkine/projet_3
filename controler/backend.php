@@ -29,9 +29,9 @@ function dashboardAdmin()
 {
     $postManager = new PostManager();
     $commentManager = new CommentManager();
-    $posts = $postManager->getPostsAdmin(); 
-    
-    
+    $posts = $postManager->getPostsAdmin();
+    $comments = $commentManager->getCommentsAdmin();
+      
     require('view/backend/AdminView.php');
   
 }
