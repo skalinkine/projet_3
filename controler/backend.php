@@ -50,7 +50,6 @@ function modifyPost($postId, $title = null, $content = null)
     }
     
     $post = $postManager->getPost($postId);
-    
     require('view/backend/updatePostView.php');
 }
 function createPost()
@@ -85,6 +84,14 @@ function deletePost($id)
     $postManager = new PostManager(); 
     $postManager->deletePost($id); 
     require('view/backend/deletePostView.php');
+    
+}
+
+function deleteComment($id)
+{
+    $commentManager = new CommentManager(); 
+    $commentManager->deleteComment($id);
+    require('view/backend/deleteCommentView.php');
     
 }
 

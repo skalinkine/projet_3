@@ -16,7 +16,7 @@ class CommentManager extends Manager
     public function getCommentsAdmin()
     {
         $db = $this->dbConnect();
-        $comments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr, is_signaled FROM comments WHERE post_id ORDER BY is_signaled DESC');
+        $comments = $db->prepare('SELECT id, post_id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr, is_signaled FROM comments ORDER BY is_signaled DESC');
         $comments->execute(array());
         return $comments->fetchAll();
     }
@@ -42,6 +42,14 @@ class CommentManager extends Manager
         $signal = true;
         $comments = $db->prepare('UPDATE comments SET is_signaled = ? WHERE id = ?');
         $affectedLines = $comments->execute(array($signal, $commentId));
+        return $affectedLines;
+    }
+    
+    public function deleteComment($id)
+    {
+        $db = $this->dbConnect();
+        $comments = $db->prepare('DELETE FROM comments WHERE id = ?');
+        $affectedLines = $comments->execute(array($_GET['id']));
         return $affectedLines;
     }
     

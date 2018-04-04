@@ -112,6 +112,11 @@ try {
                     deletePost($id);
                 }      
         }
+        elseif ($action == 'deletecomment') {
+                if (isset($_SESSION['userId'])) {
+                    deleteComment($id);
+                }
+        }
         elseif ($action == 'disconnect') {
             session_destroy();
             header('Location: index.php');

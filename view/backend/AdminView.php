@@ -22,39 +22,42 @@
 foreach ($posts as $data)
 {
 ?>
-
-   <div>
+<div class="row">
+    <div class="col-lg-4 col-md-12">
+   <img class="thumbnailarticle" src="<?= $data['image'] ?>" alt="Card image cap">
+    </div>
+   <div class="col-lg-8 col-md-12">
       <p class="text-info"><?= htmlspecialchars($data['title']) ?></p>
       <div>
         <small class="text-muted">le <?= $data['creation_date_fr'] ?></small>
       </div>
-      <img class="p-3 rounded float-left" src="<?= $data['image'] ?>" alt="Card image cap">
+      
 
       <p><?= nl2br($data['content']) ?></p>
     </div>
-
-
-    <?php
+    <div class="col-12 btnadmin">
+    <a class="btn btn-info" href="index.php?action=updatepost&amp;id=<?= $data['id'] ?>" >Modifier ce chapitre</a>
+    <a class="btn btn-info" href="index.php?action=deletepost&amp;id=<?= $data['id'] ?>" >Supprimer ce chapitre</a>
+    </div>
+</div>
+<?php
+    
     foreach ($comments as $comment){
         if ($comment['post_id'] == $data['id']) {
     ?>
-
-        <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
-        <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
-
+        <div class="<?php if ($comment['is_signaled']){echo 'signaledcomment';}?> row">
+            <div class="col-8">
+                <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
+                <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
+            </div>
+            <div class="col-4">
+            <a class="btn btn-info" href="index.php?action=deletecomment&amp;id=<?= $comment['id'] ?>" >Supprimer ce commentaire</a>
+            </div>
+        </div>
+        <hr class="my-4">
     <?php
         }
     }
-    ?>
-    
-    <form action="index.php?action=updatepost&amp;id=<?= $data['id'] ?>" method="post" >
-        <p><input class="btn btn-info" type="submit" value="Modifier ce chapitre"></p>
-    </form>
-    <form action="index.php?action=deletepost&amp;id=<?= $data['id'] ?>" method="post" >
-        <p><input class="btn btn-info" type="submit" value="Supprimer ce chapitre"></p>
-    </form>
-<hr class="my-4">
-<?php
 }
 
 ?>

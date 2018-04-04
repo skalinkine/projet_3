@@ -9,6 +9,7 @@ body {
   height: 100%;
 }
 
+
 body.login {
   display: -ms-flexbox;
   display: -webkit-box;
@@ -89,8 +90,26 @@ body.login {
 
 .accroche {
     color: #f5f5f5;
+}
 
 .img-thumbnail {
   margin: 2rem;
 }
 
+
+.signaledcomment {
+  background-color: pink;
+}
+
+.thumbnailarticle {
+    width: 100%;
+}
+
+.btn-info {
+    margin-right: 2rem;
+}
+
+.btnadmin {
+    padding-top: 1rem;
+    padding-bottom: 1rem
+}
