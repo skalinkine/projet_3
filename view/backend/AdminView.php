@@ -40,8 +40,10 @@ foreach ($posts as $data)
     <a class="btn btn-info" href="index.php?action=deletepost&amp;id=<?= $data['id'] ?>" >Supprimer ce chapitre</a>
     </div>
 </div>
+
+<div class="comments">
 <?php
-    
+
     foreach ($comments as $comment){
         if ($comment['post_id'] == $data['id']) {
     ?>
@@ -57,9 +59,12 @@ foreach ($posts as $data)
         <hr class="my-4">
     <?php
         }
-    }
-}
+    } ?>
 
+</div>
+
+<?php
+}
 ?>
 
 <?php $content = ob_get_clean(); ?>

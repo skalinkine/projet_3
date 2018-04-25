@@ -6,7 +6,7 @@ $bodyClass = 'login';
 
     <form action="index.php?action=adminConnect" method="post" class="form-signin">
       <div class="text-center mb-4">
-        <img class="mb-4 img-thumbnail" src="public/images/image_plume.jpg" alt="" width="400" height="300">
+        <img class="thumbnailarticle" src="public/images/image_plume.jpg" alt="" width="400" height="300">
         <h1 class="h3 mb-3 font-weight-normal text-info">Connexion à l'administration</h1>
         <p>Veuillez entrer votre login et votre mot de passe pour accéder à l'administration du blog</p>
       </div>

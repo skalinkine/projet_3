@@ -72,10 +72,10 @@ function createExtract($posts) {
         $wordsTable = explode(' ', $words);
         $length = count($wordsTable);
         $newWords = '';
-        for ($i = 0; $i < $length - 1; $i++) {
+        for ($i = 0; $i < $length -1; $i++) {
             $newWords = $newWords .' ' . $wordsTable[$i];
         }
-        $post['ExtractString'] = $newWords;
+        $post['cutExtractString'] = $newWords;
         array_push($newPosts, $post);
     }
     return $newPosts;

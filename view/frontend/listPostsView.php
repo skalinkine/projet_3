@@ -9,14 +9,20 @@
 <?php
 foreach ($posts as $data)
 {
-
+   
 ?>
     <div class="col-md-4">
         <div class="card mb-4 box-shadow">
             <img src="<?= $data['image'] ?>" alt="Card image cap">
                 <div class="card-body">
                   <p class="text-info"><?= htmlspecialchars($data['title']) ?></p>
-                  <p class="card-text"><?= nl2br($data['ExtractString']) . " ..." ?></p>
+                  <p class="card-text"><?php
+                  if ($data['ExtractString'] != $data['content']) {
+                     echo  nl2br($data['cutExtractString']) . " ...";
+                  } else {
+                      echo nl2br($data['ExtractString']);
+                  } 
+                  ?></p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <button type="button" class="btn btn-info"><a href="index.php?action=post&amp;id=<?= $data['id'] ?>" class="text-white">Lire la suite</a></button>

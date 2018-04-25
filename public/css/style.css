@@ -96,9 +96,12 @@ body.login {
   margin: 2rem;
 }
 
+.signaledcomment.row {
+    background-color: #ffd1c0;
+}
 
-.signaledcomment {
-  background-color: pink;
+.comments .row {
+  align-items: center;
 }
 
 .thumbnailarticle {
